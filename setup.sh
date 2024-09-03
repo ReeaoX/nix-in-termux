@@ -46,12 +46,12 @@ printf_material_you() {
 }
 
 # The warning of Android user that isn't Android 12+ user.
-nixdroid_monet_warn_1() {
+nixdroid_monet_warn() {
   PRINTF_RED="\033[1;31m"
   PRINTF_WHITE="\033[;0m"
   local -r printf_warn_reply="${1}"
   export NIXDROID_WARN="1"
-  printf "${PRINTF_RED}%s${PRINTF_WHITE}\n" "${printf_warn_reply}"
+  printf "${PRINTF_RED}[W]%s${PRINTF_WHITE}\n" "${printf_warn_reply}"
 
 }
 
@@ -65,3 +65,19 @@ printf_material_you --blue "│| |\  | |>  <| |_| | | | (_) | | (_| |_ │"
 printf_material_you --blue "│|_| \_|_/_/\_\____/|_|  \___/|_|\__ _(_)│"
 printf_material_you --green "│                                        │"
 printf_material_you --green "└────────────────────────────────────────┘"
+
+# Check if Android version is 12+ or not.
+echo -ne " "
+if [[ ${MATERIAL_YOU_COLOR_ERROR} == "1" ]]; then
+     nixdroid_monet_warn "This script could require Android 12 or later,"
+     nixdroid_monet_warn "It's not allow to execute for Android 11 and older Android version,"
+     nixdroid_monet_warn "If you have Magisk either for your favourite Android module,"
+     nixdroid_monet_warn "Don't break executing setup.sh as its not allow Pixel prop module,"
+     nixdroid_monet_warn "This cause to occure setup.sh initally,"
+     nixdroid_monet_warn "If you know them and in that case,"
+     nixdroid_monet_warn "Ensure you locally upgrade into Android 12,"
+     nixdroid_monet_warn "Or initally switch into the major rom that are Android 12+,"
+     nixdroid_monet_warn "E.G. You can install LineageOS trusty."
+     sleep 4
+     exit 1
+fi
