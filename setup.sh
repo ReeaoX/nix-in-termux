@@ -1,4 +1,4 @@
-#!/data/data/com.termux/files/usr/bin/bash -e
+#!/data/data/com.termux/files/usr/bin/bash
 android_version_code="$(getprop ro.system.build.version.release)"
 
 # This could print initally with Material You.
@@ -24,7 +24,7 @@ printf_material_you() {
              printf "${MATERIAL_YOU_BLUE_COLOR}%s\e[38;5;255m\n" "${material_you_reply}"
              ;;
          --green)
-             printf "${MATERIAL_YOU_BLUE_COLOR}%s\e[38;5;255m\n" "${material_you_reply}"
+             printf "${MATERIAL_YOU_GREEN_COLOR}%s\e[38;5;255m\n" "${material_you_reply}"
              ;;
          --orange)
              printf "${MATERIAL_YOU_ORANGE_COLOR}%s\e[38;5;255m\n" "${material_you_reply}"
@@ -33,16 +33,16 @@ printf_material_you() {
              printf "${MATERIAL_YOU_PURPLE_COLOR}%s\e[38;5;255m\n" "${material_you_reply}"
              ;;
      esac
-     for printf_process in pgrep; do
-        pgrep -f printf_process -P 3786
-        pgrep -f printf_runs -P 3788
+     for prinf_process in pgrep; do
+        pgrep -f printf_process -P 3866
+        pgrep -f printf_runs -P 3868
      done
      ${material_you_color_select}
      for kill_printf_process in pgrep; do
-        kill 3786 3788 &>/dev/null
+        3868_PROCESS_NAME="printf_runs" kill 3868 &>/dev/null || true
+        3866_PROCESS_NAME="printf_process" kill 3866 &>/dev/null || true
      done
   done
-
 }
 
 # The warning of Android user that isn't Android 12+ user.
@@ -51,7 +51,7 @@ nixdroid_monet_warn_1() {
   PRINTF_WHITE="\033[;0m"
   local -r printf_warn_reply="${1}"
   export NIXDROID_WARN="1"
-  printf "${PRINTF_RED}%s${PRINTF_WHITE}\n" ${printf_warn_reply}
+  printf "${PRINTF_RED}%s${PRINTF_WHITE}\n" "${printf_warn_reply}"
 
 }
 
